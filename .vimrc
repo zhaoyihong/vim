@@ -336,21 +336,21 @@ set matchtime=1
 set scrolloff=3
 " 为C程序提供自动缩进
 "自动补全
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {<CR>}<ESC>O
-:inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap " ""<ESC>i
-:inoremap ' ''<ESC>i
-function! ClosePair(char)
-	if getline('.')[col('.') - 1] == a:char
-		return "\<Right>"
-	else
-		return a:char
-	endif
-endfunction
+":inoremap ( ()<ESC>i
+":inoremap ) <c-r>=ClosePair(')')<CR>
+":inoremap { {<CR>}<ESC>O
+":inoremap } <c-r>=ClosePair('}')<CR>
+":inoremap [ []<ESC>i
+":inoremap ] <c-r>=ClosePair(']')<CR>
+":inoremap " ""<ESC>i
+":inoremap ' ''<ESC>i
+"function! ClosePair(char)
+"	if getline('.')[col('.') - 1] == a:char
+"		return "\<Right>"
+"	else
+"		return a:char
+"	endif
+"endfunction
 filetype plugin indent on 
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
@@ -429,9 +429,11 @@ let g:indentLine_char = '┊'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'OmniCppComplete'
+Bundle 'echofunc.vim'
+Bundle 'code_complete'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
-Bundle 'Auto-Pairs'
+"Bundle 'Auto-Pairs'
 Bundle 'python-imports.vim'
 Bundle 'CaptureClipboard'
 Bundle 'ctrlp-modified.vim'
@@ -485,10 +487,16 @@ let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 
 "F4自动生成当前目录下的ctags
-map <F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
-imap <F4> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
+map <F4> :!ctags -R --c++-kinds=+p --fields=+ialS --extra=+q .<CR><CR> :TlistUpdate<CR>
+imap <F4> <ESC>:!ctags -R --c++-kinds=+p --fields=+ilaS --extra=+q .<CR><CR> :TlistUpdate<CR>
 
 set tags=tags
 set tags+=./tags "add current directory's generated tags file 
 set tags+=~/.vim/ctags/cpp
 set tags+=~/.vim/ctags/include
+
+"echofunc 配置
+let g:EchoFuncLangsUsed = ["c","cpp","c++"]
+let g:EchoFuncKeyNext = '<c-x>' "下一个
+let g:EchoFuncKeyPrev = '<c-z>' "上一个
+
