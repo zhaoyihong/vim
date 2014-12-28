@@ -9,11 +9,12 @@ set sm
 set selection=inclusive
 set wildmenu
 set mousemodel=popup
+set nocp
 
 au FileType php setlocal dict+=~/.vim/dict/php_funclist.dict
 au FileType css setlocal dict+=~/.vim/dict/css.dict
-au FileType c setlocal dict+=~/.vim/dict/c.dict
-au FileType cpp setlocal dict+=~/.vim/dict/cpp.dict
+"au FileType c setlocal dict+=~/.vim/dict/c.dict
+"au FileType cpp setlocal dict+=~/.vim/dict/cpp.dict
 au FileType scale setlocal dict+=~/.vim/dict/scale.dict
 au FileType javascript setlocal dict+=~/.vim/dict/javascript.dict
 au FileType html setlocal dict+=~/.vim/dict/javascript.dict
@@ -282,9 +283,9 @@ set autoread
 " quickfix模式
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
 "代码补全 
-set completeopt=preview,menu 
+set completeopt=longest,menu 
 "允许插件  
-"filetype plugin on
+filetype plugin on
 "共享剪贴板  
 "set clipboard+=unnamed 
 "自动保存
