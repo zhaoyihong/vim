@@ -335,21 +335,21 @@ set matchtime=1
 set scrolloff=3
 " 为C程序提供自动缩进
 "自动补全
-"":inoremap ( ()<ESC>i
-"":inoremap ) <c-r>=ClosePair(')')<CR>
-":inoremap { {<CR>}<ESC>O
-":inoremap } <c-r>=ClosePair('}')<CR>
-"":inoremap [ []<ESC>i
-"":inoremap ] <c-r>=ClosePair(']')<CR>
-"":inoremap " ""<ESC>i
-"":inoremap ' ''<ESC>i
-""function! ClosePair(char)
-""	if getline('.')[col('.') - 1] == a:char
-""		return "\<Right>"
-""	else
-""		return a:char
-""	endif
-""endfunction
+:inoremap ( ()<ESC>i
+:inoremap ) <c-r>=ClosePair(')')<CR>
+:inoremap { {<CR>}<ESC>O
+:inoremap } <c-r>=ClosePair('}')<CR>
+:inoremap [ []<ESC>i
+:inoremap ] <c-r>=ClosePair(']')<CR>
+:inoremap " ""<ESC>i
+:inoremap ' ''<ESC>i
+function! ClosePair(char)
+	if getline('.')[col('.') - 1] == a:char
+		return "\<Right>"
+	else
+		return a:char
+	endif
+endfunction
 filetype plugin indent on 
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
@@ -364,7 +364,8 @@ let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill�
 ""let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树  
 "let Tlist_Show_One_File=1            "不同时显示多个文件的tag，只显示当前文件的
 "设置tags  
-"set tags=tags  
+set tags=tags  
+
 "set autochdir 
 
 
@@ -426,8 +427,9 @@ let g:indentLine_char = '┊'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
+Bundle 'OmniCppComplete'
 " non github repos
-Bundle 'git://git.wincent.com/command-t.git'
+"Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'Auto-Pairs'
 Bundle 'python-imports.vim'
 Bundle 'CaptureClipboard'
@@ -452,6 +454,7 @@ Bundle 'Django-Projects'
 
 "Bundle 'FredKSchott/CoVim'
 "Bundle 'djangojump'
+
 " ...
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
@@ -469,3 +472,22 @@ let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 let g:ctrlp_extensions = ['funky']
 
 let NERDTreeIgnore=['\.pyc']
+
+"set tags+=~/.vim/ctags/cpp
+let OmniCpp_NamespaceSearch = 2
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1 
+let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表 
+let OmniCpp_MayCompleteDot = 1   " 输入 .  后自动补全
+let OmniCpp_MayCompleteArrow = 1 " 输入 -> 后自动补全 
+let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全 
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+
+"F4自动生成当前目录下的ctags
+map <F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
+imap <F4> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
+
+set tags=tags
+set tags+=./tags "add current directory's generated tags file 
+set tags+=~/.vim/ctags/cpp
+set tags+=~/.vim/ctags/include
