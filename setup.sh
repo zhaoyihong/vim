@@ -22,6 +22,8 @@ mv -f ~/.vim ~/.vim_old
 mv -f ~/vim ~/.vim
 mv -f ~/.vimrc ~/.vimrc_old
 mv -f ~/.vim/.vimrc ~/
+sudo ctags -R --c++-kinds=+p --fields=+ialS --extra=+q /usr/include/ #为include目录生成ctags
+sudo mv -f tags ~/.vim/ctags/include
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 echo "zhao正在努力为您安装bundle程序" > zhao
 echo "安装完毕将自动退出" >> zhao
