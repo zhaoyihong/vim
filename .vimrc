@@ -134,19 +134,19 @@ func SetTitle()
 	else 
 		call setline(1, "/*************************************************************************") 
 		call append(line("."), "	> File Name: ".expand("%")) 
-		call append(line(".")+1, "	> Author: ") 
-		call append(line(".")+2, "	> Mail: ") 
+		call append(line(".")+1, "	> Author:zhaoyihong ") 
+		call append(line(".")+2, "	> Mail:zhaoyihong_at_126_dot_com ") 
 		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
 		call append(line(".")+4, " ************************************************************************/") 
 		call append(line(".")+5, "")
 	endif
 	if expand("%:e") == 'cpp'
-		call append(line(".")+6, "#include<iostream>")
+		call append(line(".")+6, "#include  <iostream>")
 		call append(line(".")+7, "using namespace std;")
 		call append(line(".")+8, "")
 	endif
 	if &filetype == 'c'
-		call append(line(".")+6, "#include<stdio.h>")
+		call append(line(".")+6, "#include  <stdio.h>")
 		call append(line(".")+7, "")
 	endif
 	if expand("%:e") == 'h'
@@ -283,7 +283,7 @@ set autoread
 " quickfix模式
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
 "代码补全 
-set completeopt=longest,menu 
+set completeopt=menu 
 "允许插件  
 filetype plugin on
 "共享剪贴板  
@@ -431,6 +431,7 @@ Bundle 'FuzzyFinder'
 Bundle 'OmniCppComplete'
 Bundle 'echofunc.vim'
 Bundle 'code_complete'
+""Bundle 'SuperTab'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 "Bundle 'Auto-Pairs'
@@ -500,3 +501,6 @@ let g:EchoFuncLangsUsed = ["c","cpp","c++"]
 let g:EchoFuncKeyNext = '<c-x>' "下一个
 let g:EchoFuncKeyPrev = '<c-z>' "上一个
 
+
+
+c
